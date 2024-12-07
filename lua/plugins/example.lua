@@ -157,28 +157,28 @@ return {
   },
 
   -- the opts function can also be used to change the default opts:
-  {
-    "nvim-lualine/lualine.nvim",
-    event = "VeryLazy",
-    opts = function(_, opts)
-      table.insert(opts.sections.lualine_x, {
-        function()
-          return "😄"
-        end,
-      })
-    end,
-  },
-
-  -- or you can return new options to override all the defaults
-  {
-    "nvim-lualine/lualine.nvim",
-    event = "VeryLazy",
-    opts = function()
-      return {
-        --[[add your custom lualine config here]]
-      }
-    end,
-  },
+  -- {
+  --   "nvim-lualine/lualine.nvim",
+  --   event = "VeryLazy",
+  --   opts = function(_, opts)
+  --     table.insert(opts.sections.lualine_x, {
+  --       function()
+  --         return "😄"
+  --       end,
+  --     })
+  --   end,
+  -- },
+  --
+  -- -- or you can return new options to override all the defaults
+  -- {
+  --   "nvim-lualine/lualine.nvim",
+  --   event = "VeryLazy",
+  --   opts = function()
+  --     return {
+  --       --[[add your custom lualine config here]]
+  --     }
+  --   end,
+  -- },
 
   -- use mini.starter instead of alpha
   -- { import = "lazyvim.plugins.extras.ui.mini-starter" },
@@ -202,6 +202,14 @@ return {
     "https://git.sr.ht/~whynothugo/lsp_lines.nvim",
     config = function()
       require("lsp_lines").setup()
+    end,
+  },
+  {
+    "folke/noice.nvim",
+    opts = function(_, opts)
+      opts.lsp.signature = {
+        auto_open = { enabled = false },
+      }
     end,
   },
 }
