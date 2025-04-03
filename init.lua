@@ -8,7 +8,3 @@ vim.api.nvim_set_hl(0, "Normal", { bg = "none" })
  vim.api.nvim_set_hl(0, "NormalFloat", { bg = "none" })
 end
 Transparent()
--- require("plugins.testing").setup({
---     include_context = true,
---     context_lines = 3,
--- })
