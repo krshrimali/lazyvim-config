@@ -183,17 +183,24 @@ local opts = { silent = true, nowait = true }
 -- Manage extensions
 -- keyset("n", "<space>e", ":<C-u>CocList extensions<cr>", opts)
 -- Show commands
-keyset("n", "<space>cc", ":<C-u>CocList commands<cr>", opts)
+keyset("n", "<space>zc", ":<C-u>CocList commands<cr>", opts)
 -- Find symbol of current document
-keyset("n", "<space>co", ":<C-u>CocList outline<cr>", opts)
+keyset("n", "<space>zo", ":<C-u>CocList outline<cr>", opts)
 -- Search workspace symbols
-keyset("n", "<space>cs", ":<C-u>CocList -I symbols<cr>", opts)
+keyset("n", "<space>zs", ":<C-u>CocList -I symbols<cr>", opts)
 -- Do default action for next item
 -- keyset("n", "<space>j", ":<C-u>CocNext<cr>", opts)
 -- -- Do default action for previous item
 -- keyset("n", "<space>k", ":<C-u>CocPrev<cr>", opts)
 -- -- Resume latest coc list
-keyset("n", "<space>cp", ":<C-u>CocListResume<cr>", opts)
+keyset("n", "<space>zp", ":<C-u>CocListResume<cr>", opts)
+
+-- Keymaps for goto-preview
+vim.keymap.set("n", "<leader>gpd", "<cmd>lua require('goto-preview').goto_preview_definition()<CR>", {noremap=true})
+vim.keymap.set("n", "<leader>gpi", "<cmd>lua require('goto-preview').goto_preview_implementation()<CR>", {noremap=true})
+vim.keymap.set("n", "<leader>gpD", "<cmd>lua require('goto-preview').goto_preview_declaration()<CR>", {noremap=true})
+vim.keymap.set("n", "<leader>gP", "<cmd>lua require('goto-preview').close_all_win()<CR>", {noremap=true})
+vim.keymap.set("n", "<leader>gpr", "<cmd>lua require('goto-preview').goto_preview_references()<CR>", {noremap=true})
 
 --
 -- vim.keymap.set({ "n", "v" }, "<leader>y", [["+y]])
