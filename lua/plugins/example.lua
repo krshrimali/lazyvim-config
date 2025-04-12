@@ -299,17 +299,17 @@ return {
         branch = "release",
     },
 
-    {
-        "TabbyML/vim-tabby",
-        lazy = false,
-        dependencies = {
-            "neovim/nvim-lspconfig",
-        },
-        init = function()
-            vim.g.tabby_agent_start_command = { "npx", "tabby-agent", "--stdio" }
-            vim.g.tabby_inline_completion_trigger = "auto"
-        end,
-    },
+    -- {
+    --     "TabbyML/vim-tabby",
+    --     lazy = false,
+    --     dependencies = {
+    --         "neovim/nvim-lspconfig",
+    --     },
+    --     init = function()
+    --         vim.g.tabby_inline_completion_trigger = "auto"
+    --         vim.g.tabby_agent_start_command = { "npx", "tabby-agent", "--stdio" }
+    --     end,
+    -- },
     {
         "krshrimali/nvim-utils",
         config = function()
@@ -321,5 +321,16 @@ return {
             })
         end,
         event = "VeryLazy",
-    }
+    },
+    {
+        "github/copilot.vim",
+    },
+    -- {
+    --     "zbirenbaum/copilot.lua",
+    --     cmd = "Copilot",
+    --     event = "InsertEnter",
+    --     config = function()
+    --         require("copilot").setup({})
+    --     end,
+    -- }
 }
