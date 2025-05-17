@@ -333,4 +333,10 @@ return {
     --         require("copilot").setup({})
     --     end,
     -- }
+    {
+        "rmagatti/goto-preview",
+        dependencies = { "rmagatti/logger.nvim" },
+        event = "BufEnter",
+        config = true, -- necessary
+    },
 }
