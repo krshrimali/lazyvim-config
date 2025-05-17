@@ -21,3 +21,8 @@ vim.api.nvim_set_keymap("n", "<leader>gr", ":lua ShowAndCopyRelativePath()<CR>",
 vim.api.nvim_set_keymap("n", "<leader>ga", ":lua ShowAndCopyAbsolutePath()<CR>", { noremap = true, silent = true })
 vim.api.nvim_set_keymap("i", "<C-l>", 'copilot#Accept("<CR>")', { expr = true, silent = true })
 vim.keymap.set("v", "<leader>cf", vim.lsp.buf.format, {})
+vim.keymap.set('n', '<leader>sf', function()
+  require('telescope.builtin').lsp_dynamic_workspace_symbols({
+    symbols = { 'function', 'method' }
+  })
+end, { desc = 'Search functions in workspace' })

@@ -233,6 +233,9 @@ return {
         config = true,
         event = { "WinLeave" },
     },
+    {
+        "neovim/nvim-lspconfig"
+    },
     -- {
     --     "TabbyML/vim-tabby",
     --     lazy = false,
