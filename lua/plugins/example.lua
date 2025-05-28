@@ -234,7 +234,8 @@ return {
         event = { "WinLeave" },
     },
     {
-        "neovim/nvim-lspconfig"
+        "neovim/nvim-lspconfig",
+        enabled = false
     },
     {
         "krshrimali/nvim-utils",
@@ -264,4 +265,12 @@ return {
         event = "BufEnter",
         config = true, -- necessary
     },
+    {
+        "neoclide/coc.nvim",
+        branch = "release",
+    },
+    {
+        "saghen/blink.cmp",
+        enabled = false
+    }
 }
