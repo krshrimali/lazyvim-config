@@ -234,19 +234,9 @@ return {
         event = { "WinLeave" },
     },
     {
-        "neovim/nvim-lspconfig"
+        "neovim/nvim-lspconfig",
+        enabled = false
     },
-    -- {
-    --     "TabbyML/vim-tabby",
-    --     lazy = false,
-    --     dependencies = {
-    --         "neovim/nvim-lspconfig",
-    --     },
-    --     init = function()
-    --         vim.g.tabby_agent_start_command = { "npx", "tabby-agent", "--stdio" }
-    --         vim.g.tabby_inline_completion_trigger = "auto"
-    --     end,
-    -- },
     {
         "krshrimali/nvim-utils",
         config = function()
@@ -275,4 +265,12 @@ return {
         event = "BufEnter",
         config = true, -- necessary
     },
+    {
+        "neoclide/coc.nvim",
+        branch = "release",
+    },
+    {
+        "saghen/blink.cmp",
+        enabled = false
+    }
 }
