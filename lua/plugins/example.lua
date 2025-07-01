@@ -261,7 +261,9 @@ return {
     },
     {
         "rmagatti/goto-preview",
-        enabled = false,
+        dependencies = { "rmagatti/logger.nvim" },
+        event = "BufEnter",
+        config = true, -- necessary
     },
     {
         "neoclide/coc.nvim",
@@ -270,5 +272,8 @@ return {
     {
         "saghen/blink.cmp",
         enabled = false
+    },
+    {
+        "github/copilot.vim"
     }
 }
