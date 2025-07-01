@@ -1,10 +1,6 @@
 vim.api.nvim_set_keymap("i", "<C-l>", 'copilot#Accept("<CR>")', { expr = true, silent = true })
-vim.keymap.set("v", "<leader>cf", vim.lsp.buf.format, {})
-vim.keymap.set('n', '<leader>sf', function()
-  require('telescope.builtin').lsp_dynamic_workspace_symbols({
-    symbols = { 'function', 'method' }
-  })
-end, { desc = 'Search functions in workspace' })
+vim.keymap.set("v", "<leader>cf", "<Plug>(coc-format-selected)", { silent = true })
+vim.keymap.set("n", "<leader>sf", "<cmd>CocList -I symbols<CR>", { desc = "Search symbols with Coc" })
 
 -- Keymaps are automatically loaded on the VeryLazy event
 -- Default keymaps that are always set: https://github.com/LazyVim/LazyVim/blob/main/lua/lazyvim/config/keymaps.lua
@@ -38,7 +34,7 @@ vim.api.nvim_set_keymap("n", "<leader>ga", ":lua ShowAndCopyAbsolutePath()<CR>",
 --   })
 -- end, { desc = "Git Browse (Copy)" })
 
-vim.keymap.set("v", "<leader>lf", vim.lsp.buf.format, {})
+vim.keymap.set("n", "<leader>lf", "<cmd>Format<CR>", { silent = true })
 
 local keyset = vim.keymap.set
 -- Autocomplete
@@ -64,12 +60,12 @@ keyset("i", "<cr>", [[coc#pum#visible() ? coc#pum#confirm() : "\<C-g>u\<CR>\<c-r
 -- keyset("i", "<c-j>", "<Plug>(coc-snippets-expand-jump)")
 -- -- Use <c-space> to trigger completion
 keyset("i", "<c-space>", "coc#refresh()", { silent = true, expr = true })
--- 
+--
 -- -- Use `[g` and `]g` to navigate diagnostics
 -- -- Use `:CocDiagnostics` to get all diagnostics of current buffer in location list
 keyset("n", "[g", "<Plug>(coc-diagnostic-prev)", { silent = true })
 keyset("n", "]g", "<Plug>(coc-diagnostic-next)", { silent = true })
--- 
+--
 -- -- GoTo code navigation
 keyset("n", "gd", "<Plug>(coc-definition)", { silent = true })
 keyset("n", "gy", "<Plug>(coc-type-definition)", { silent = true })
@@ -201,6 +197,33 @@ keyset("n", "<space>k", ":<C-u>CocPrev<cr>", opts)
 -- -- Resume latest coc list
 keyset("n", "<space>zp", ":<C-u>CocListResume<cr>", opts)
 
+vim.keymap.set("x", "/", "<Esc>/\\%V") --search within visual selection - this is magic
+vim.keymap.set("n", "<leader>cpi", ":ContextPilotStartIndexing<CR>", { desc = "📦 Index Workspace" })
+
+-- Get top contexts for the entire current file
+vim.keymap.set("n", "<leader>cpc", ":ContextPilotContexts<CR>", { desc = "📄 Get Contexts for File" })
+
+-- Get top contexts for the current line
+vim.keymap.set("n", "<leader>cpl", ":ContextPilotContextsCurrentLine<CR>", { desc = "🔍 Get Contexts for Line" })
+
+-- Get top contexts for a visual selection (range-based)
+vim.keymap.set("v", "<leader>cpr", ":ContextPilotQueryRange<CR>", { desc = "🔎 Query Contexts for Range" })
+vim.api.nvim_set_keymap(
+  "i",
+  "<C-j>",
+  'pumvisible() ? "\\<C-n>" : "\\<C-j>"',
+  { noremap = true, expr = true, silent = true }
+)
+vim.api.nvim_set_keymap(
+  "i",
+  "<C-k>",
+  'pumvisible() ? "\\<C-p>" : "\\<C-k>"',
+  { noremap = true, expr = true, silent = true }
+)
+--
+-- vim.keymap.set({ "n", "v" }, "<leader>y", [["+y]])
+-- vim.keymap.set("n", "<leader>Y", [["+Y]])
+
 -- Keymaps for goto-preview
 vim.keymap.set("n", "<leader>gpd", "<cmd>lua require('goto-preview').goto_preview_definition()<CR>", { noremap = true })
 vim.keymap.set(
@@ -217,20 +240,3 @@ vim.keymap.set(
 )
 vim.keymap.set("n", "<leader>gP", "<cmd>lua require('goto-preview').close_all_win()<CR>", { noremap = true })
 vim.keymap.set("n", "<leader>gpr", "<cmd>lua require('goto-preview').goto_preview_references()<CR>", { noremap = true })
-
-vim.keymap.set("x", "/", "<Esc>/\\%V") --search within visual selection - this is magic
-vim.keymap.set("n", "<leader>cpi", ":ContextPilotStartIndexing<CR>", { desc = "📦 Index Workspace" })
-
--- Get top contexts for the entire current file
-vim.keymap.set("n", "<leader>cpc", ":ContextPilotContexts<CR>", { desc = "📄 Get Contexts for File" })
-
--- Get top contexts for the current line
-vim.keymap.set("n", "<leader>cpl", ":ContextPilotContextsCurrentLine<CR>", { desc = "🔍 Get Contexts for Line" })
-
--- Get top contexts for a visual selection (range-based)
-vim.keymap.set("v", "<leader>cpr", ":ContextPilotQueryRange<CR>", { desc = "🔎 Query Contexts for Range" })
-vim.api.nvim_set_keymap('i', '<C-j>', 'pumvisible() ? "\\<C-n>" : "\\<C-j>"', { noremap = true, expr = true, silent = true })
-vim.api.nvim_set_keymap('i', '<C-k>', 'pumvisible() ? "\\<C-p>" : "\\<C-k>"', { noremap = true, expr = true, silent = true })
---
--- vim.keymap.set({ "n", "v" }, "<leader>y", [["+y]])
--- vim.keymap.set("n", "<leader>Y", [["+Y]])

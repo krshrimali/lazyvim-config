@@ -108,7 +108,7 @@ return {
     -- },
     -- for typescript, LazyVim also includes extra specs to properly setup lspconfig,
     -- treesitter, mason and typescript.nvim. So instead of the above, you can use:
-    { import = "lazyvim.plugins.extras.lang.typescript" },
+    -- Use Coc for TypeScript LSP instead of LazyVim's lspconfig setup
 
     -- add more treesitter parsers
     {
@@ -175,7 +175,7 @@ return {
     -- { import = "lazyvim.plugins.extras.ui.mini-starter" },
 
     -- add jsonls and schemastore packages, and setup treesitter for json, json5 and jsonc
-    { import = "lazyvim.plugins.extras.lang.json" },
+    -- Use Coc for JSON LSP instead of LazyVim's lspconfig setup
     {
         "ibhagwan/fzf-lua",
         opts = {
@@ -204,7 +204,7 @@ return {
         lazy = false,
         opts = {
             scope = { enabled = true },
-            dim = { enabeld = true },
+            dim = { enabled = true },
             -- scroll = { enabled = true },
             gitbrowse = {
                 what = "permalink",
@@ -272,5 +272,8 @@ return {
     {
         "saghen/blink.cmp",
         enabled = false
+    },
+    {
+        "github/copilot.vim"
     }
 }
