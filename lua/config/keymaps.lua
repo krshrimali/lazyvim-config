@@ -1,10 +1,11 @@
 vim.api.nvim_set_keymap("i", "<C-l>", 'copilot#Accept("<CR>")', { expr = true, silent = true })
-vim.keymap.set("v", "<leader>cf", vim.lsp.buf.format, {})
-vim.keymap.set('n', '<leader>sf', function()
-  require('telescope.builtin').lsp_dynamic_workspace_symbols({
-    symbols = { 'function', 'method' }
-  })
-end, { desc = 'Search functions in workspace' })
+vim.keymap.set("v", "<leader>cf", "<Plug>(coc-format-selected)", { silent = true })
+vim.keymap.set(
+  "n",
+  "<leader>sf",
+  "<cmd>CocList -I symbols<CR>",
+  { desc = "Search symbols with Coc" }
+)
 
 -- Keymaps are automatically loaded on the VeryLazy event
 -- Default keymaps that are always set: https://github.com/LazyVim/LazyVim/blob/main/lua/lazyvim/config/keymaps.lua
@@ -38,7 +39,7 @@ vim.api.nvim_set_keymap("n", "<leader>ga", ":lua ShowAndCopyAbsolutePath()<CR>",
 --   })
 -- end, { desc = "Git Browse (Copy)" })
 
-vim.keymap.set("v", "<leader>lf", vim.lsp.buf.format, {})
+vim.keymap.set("n", "<leader>lf", "<cmd>Format<CR>", { silent = true })
 
 local keyset = vim.keymap.set
 -- Autocomplete
@@ -201,22 +202,6 @@ keyset("n", "<space>k", ":<C-u>CocPrev<cr>", opts)
 -- -- Resume latest coc list
 keyset("n", "<space>zp", ":<C-u>CocListResume<cr>", opts)
 
--- Keymaps for goto-preview
-vim.keymap.set("n", "<leader>gpd", "<cmd>lua require('goto-preview').goto_preview_definition()<CR>", { noremap = true })
-vim.keymap.set(
-  "n",
-  "<leader>gpi",
-  "<cmd>lua require('goto-preview').goto_preview_implementation()<CR>",
-  { noremap = true }
-)
-vim.keymap.set(
-  "n",
-  "<leader>gpD",
-  "<cmd>lua require('goto-preview').goto_preview_declaration()<CR>",
-  { noremap = true }
-)
-vim.keymap.set("n", "<leader>gP", "<cmd>lua require('goto-preview').close_all_win()<CR>", { noremap = true })
-vim.keymap.set("n", "<leader>gpr", "<cmd>lua require('goto-preview').goto_preview_references()<CR>", { noremap = true })
 
 vim.keymap.set("x", "/", "<Esc>/\\%V") --search within visual selection - this is magic
 vim.keymap.set("n", "<leader>cpi", ":ContextPilotStartIndexing<CR>", { desc = "📦 Index Workspace" })
